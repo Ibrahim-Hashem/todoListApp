@@ -36,9 +36,9 @@ function addToDo(e){
 function deleteItem(e){
   if(e.target.classList[0] === 'todo-delete'){
     e.target.parentElement.classList.add('fall');
-    //remove localstorage
-    window.localStorage.removeItem("todos",JSON.stringify(e.target.parentElement));
-    //remove element
+    let temp = JSON.parse(window.localStorage.getItem('todos')).filter(x=>x!=e.target.parentElement.innerText);
+    window.localStorage.removeItem('todos');
+    window.localStorage.setItem('todos',JSON.stringify(temp));
     e.target.parentElement.remove();
   }
 }
